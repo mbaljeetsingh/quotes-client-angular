@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="toolbar">
     <span>Quotes Client</span>
-    <button mat-button>
+    <button mat-button [routerLink]="['/quotes']" routerLinkActive="active">
       <mat-icon>format_quote</mat-icon>
       Quotes
     </button>
