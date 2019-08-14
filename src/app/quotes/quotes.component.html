@@ -1,7 +1,7 @@
-<mat-card class="quotes-card">
+<mat-card class="quotes-card" *ngFor="let quote of [].constructor(20)">
   <mat-card-header>
     <div mat-card-avatar class="avatar">
-      <span>M</span>
+      <span>{{ 'Mahatma Gandhi'.split('')[0] }}</span>
     </div>
     <mat-card-title>Mahatma Gandhi</mat-card-title>
   </mat-card-header>
