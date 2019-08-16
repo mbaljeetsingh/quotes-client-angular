@@ -1,1 +1,19 @@
-<p>edit-quote works!</p>
+<form #form="ngForm" (submit)="onSave(form)" class="quote-form">
+  <mat-form-field>
+    <textarea
+      name="title"
+      matInput
+      placeholder="Enter Quote"
+      [(ngModel)]="quote.title"
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      name="author"
+      matInput
+      placeholder="Enter Author"
+      [(ngModel)]="quote.author"
+    />
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Save</button>
+</form>
