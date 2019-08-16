@@ -1,7 +1,6 @@
-<div class="home-container">
+<div class="home-container" *ngIf="quote | async as quote">
   <span class="quote">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit assumenda
-    aliquam ad, quis
+    {{ quote.title }}
   </span>
   <br />
   <button mat-raised-button color="primary" [routerLink]="['/quotes']">

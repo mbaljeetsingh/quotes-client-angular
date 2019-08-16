@@ -18,4 +18,11 @@ export class QuotesService {
       .get<Quote[]>(`${baseUrl}/quotes`)
       .pipe(tap(data => console.log('Qutoes: ', data)));
   }
+
+  // http://localhost:3000/quotes/5d4bbd1fa6a90b534472d441
+  getQuote(id): Observable<Quote> {
+    return this.http
+      .get<Quote>(`${baseUrl}/quotes/${id}`)
+      .pipe(tap(data => console.log('Quote: ', data)));
+  }
 }
