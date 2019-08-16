@@ -1,3 +1,11 @@
+<button
+  mat-button
+  color="primary"
+  class="create-quote"
+  [routerLink]="['/edit']"
+>
+  <mat-icon>note_add</mat-icon>Create Quote
+</button>
 <mat-card class="quotes-card" *ngFor="let quote of quotes | async">
   <mat-card-header>
     <div mat-card-avatar class="avatar" [ngStyle]="getRandomColor()">
