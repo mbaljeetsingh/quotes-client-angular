@@ -1,4 +1,4 @@
-<mat-card class="quotes-card" *ngFor="let quote of quotes">
+<mat-card class="quotes-card" *ngFor="let quote of quotes | async">
   <mat-card-header>
     <div mat-card-avatar class="avatar" [ngStyle]="getRandomColor()">
       <span>{{ quote.author.split('')[0] }}</span>
