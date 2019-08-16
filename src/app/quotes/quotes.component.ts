@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuotesService } from '../quotes.service';
 
 @Component({
@@ -6,12 +6,13 @@ import { QuotesService } from '../quotes.service';
   templateUrl: './quotes.component.html',
   styleUrls: ['./quotes.component.scss']
 })
-export class QuotesComponent implements OnInit {
+export class QuotesComponent implements OnInit, OnDestroy {
   quotes;
+  subscription;
   constructor(private quotesService: QuotesService) {}
 
   ngOnInit() {
-    this.quotesService.getData().subscribe(data => {
+    this.subscription = this.quotesService.getData().subscribe(data => {
       console.log(data);
       this.quotes = data;
     });
@@ -24,5 +25,9 @@ export class QuotesComponent implements OnInit {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return { background: color };
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
