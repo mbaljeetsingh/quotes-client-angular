@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuotesService } from '../quotes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-quote',
@@ -12,15 +13,38 @@ export class EditQuoteComponent implements OnInit {
     author: ''
   };
 
-  constructor(private quotesSerivce: QuotesService) {}
+  id: string;
 
-  ngOnInit() {}
+  constructor(
+    private quotesSerivce: QuotesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
+    if (this.id) {
+      this.quotesSerivce.getQuote(this.id).subscribe(data => {
+        // console.log(data);
+        this.quote = data;
+      });
+    }
+  }
 
   onSave(form) {
     console.log(form);
     const data = form.value;
-    this.quotesSerivce.createQuote(data).subscribe(data => {
-      console.log(data);
-    });
+    if (this.id) {
+      this.quotesSerivce.updateQuote(this.id, data).subscribe(quote => {
+        console.log(quote);
+        this.router.navigateByUrl('/quotes');
+      });
+    } else {
+      this.quotesSerivce.createQuote(data).subscribe(quote => {
+        console.log(quote);
+        this.router.navigateByUrl('/quotes');
+      });
+    }
   }
 }
