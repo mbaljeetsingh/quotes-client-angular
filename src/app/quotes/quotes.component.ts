@@ -17,6 +17,10 @@ export class QuotesComponent implements OnInit {
     //   console.log(data);
     //   this.quotes = data;
     // });
+    this.getData();
+  }
+
+  getData() {
     this.quotes = this.quotesService.getData();
   }
 
@@ -27,5 +31,13 @@ export class QuotesComponent implements OnInit {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return { background: color };
+  }
+
+  onDelete(id) {
+    console.log(id);
+    this.quotesService.deleteQuote(id).subscribe(data => {
+      this.getData();
+      console.log('Quote Deleted');
+    });
   }
 }

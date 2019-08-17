@@ -34,4 +34,8 @@ export class QuotesService {
   updateQuote(id: string, quote: Quote): Observable<Quote> {
     return this.http.put<Quote>(`${baseUrl}/quotes/${id}`, quote);
   }
+
+  deleteQuote(id: string) {
+    return this.http.delete(`${baseUrl}/quotes/${id}`);
+  }
 }
