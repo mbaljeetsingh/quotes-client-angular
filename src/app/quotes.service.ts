@@ -20,9 +20,14 @@ export class QuotesService {
   }
 
   // http://localhost:3000/quotes/5d4bbd1fa6a90b534472d441
-  getQuote(id): Observable<Quote> {
+  getQuote(id: string): Observable<Quote> {
     return this.http
       .get<Quote>(`${baseUrl}/quotes/${id}`)
       .pipe(tap(data => console.log('Quote: ', data)));
+  }
+
+  // http://localhost:3000/quotes
+  createQuote(quote: Quote): Observable<Quote> {
+    return this.http.post<Quote>(`${baseUrl}/quotes`, quote);
   }
 }
