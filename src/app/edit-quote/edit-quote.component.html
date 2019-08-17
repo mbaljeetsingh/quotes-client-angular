@@ -5,7 +5,12 @@
       matInput
       placeholder="Enter Quote"
       [(ngModel)]="quote.title"
+      required
+      #title="ngModel"
     ></textarea>
+    <mat-error *ngIf="title.invalid && (title.touched || title.dirty)">
+      Please Enter Quote
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input
@@ -13,7 +18,19 @@
       matInput
       placeholder="Enter Author"
       [(ngModel)]="quote.author"
+      required
+      #author="ngModel"
     />
+    <mat-error *ngIf="author.invalid && (author.touched || author.dirty)">
+      Please Enter Author
+    </mat-error>
   </mat-form-field>
-  <button type="submit" mat-raised-button color="primary">Save</button>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="!form.valid"
+  >
+    Save
+  </button>
 </form>
