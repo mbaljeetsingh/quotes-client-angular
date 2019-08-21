@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
   constructor(private quotesService: QuotesService) {}
 
   ngOnInit() {
-    this.quote = this.quotesService.getQuote('5d4bbd1fa6a90b534472d441');
+    this.quote = this.quotesService.getQuote('5d5cd4ddb141e240f02be8d4');
   }
 }
